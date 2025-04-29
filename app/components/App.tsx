@@ -16,7 +16,7 @@ import Visualizer from "./Visualizer";
 
 const App: () => JSX.Element = () => {
   const [caption, setCaption] = useState<string | undefined>(
-    "Powered by Deepgram"
+    "CETRAM-CORFO"
   );
   const { connection, connectToDeepgram, connectionState } = useDeepgram();
   const { setupMicrophone, microphone, startMicrophone, microphoneState } =
@@ -33,9 +33,11 @@ const App: () => JSX.Element = () => {
     if (microphoneState === MicrophoneState.Ready) {
       connectToDeepgram({
         model: "nova-3",
+        language: "multi",
         interim_results: true,
         smart_format: true,
         filler_words: true,
+        noise_reduction: true,
         utterance_end_ms: 3000,
       });
     }
